@@ -36,7 +36,12 @@ class JsParserTest extends PHPUnit_Framework_TestCase
             array("trl(\"undefined word\")", array(
                 array('before'=> "trl(\"undefined word\")", 'text'=>'undefined word', 'source'=>'web', 'type'=>'trl')
             )),
-            //TODO same with trlKwf
+            array("trlKwf('undefined word')", array(
+                array('before'=> "trlKwf('undefined word')", 'text'=>'undefined word', 'source'=>'kwf', 'type'=>'trl')
+            )),
+            array("trlKwf(\"undefined word\")", array(
+                array('before'=> "trlKwf(\"undefined word\")", 'text'=>'undefined word', 'source'=>'kwf', 'type'=>'trl')
+            )),
             //TRLC
             array("trlc('context', 'undefined word')", array(
                 array('before'=>"trlc('context', 'undefined word')", 'text'=>'undefined word', 'source'=>'web', 'type'=>'trlc', 'context'=>'context')
