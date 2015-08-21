@@ -46,7 +46,9 @@ class JsParserTest extends PHPUnit_Framework_TestCase
             array("trlc('context', 'undefined word')", array(
                 array('before'=>"trlc('context', 'undefined word')", 'text'=>'undefined word', 'source'=>'web', 'type'=>'trlc', 'context'=>'context')
             )),
-            //TODO " instead of '
+            array("trlc(\"context\", \"undefined word\")", array(
+                array('before'=>"trlc(\"context\", \"undefined word\")", 'text'=>'undefined word', 'source'=>'web', 'type'=>'trlc', 'context'=>'context')
+            )),
             //TODO same with trlKwf
             //TRLP
             array("trlp('undefined word', 'undefined words', 10)", array(
