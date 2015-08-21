@@ -1,5 +1,5 @@
 {
-    "name": "koala-framework/kwf-jsparser",
+    "name": "koala-framework/kwf-trl-jsparser",
     "description": "Parses js code for trl-calls and returns list",
     "require": {
         "symfony/process": "~2.5",
