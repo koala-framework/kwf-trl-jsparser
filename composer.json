@@ -1,0 +1,21 @@
+{
+    "name": "koala-framework/kwf-jsparser",
+    "description": "Parses js code for trl-calls and returns list",
+    "require": {
+        "symfony/process": "~2.5",
+        "koala-framework/composer-extra-assets": "1.1.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "extra": {
+        "require-npm": {
+            "esprima": "1.2.2"
+        }
+    },
+    "autoload": {
+        "psr-0": { "Kwf_": "" }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
