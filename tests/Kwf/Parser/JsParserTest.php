@@ -6,7 +6,7 @@ class JsParserTest extends PHPUnit_Framework_TestCase
      */
     public function testParseData($content, $expectedTrlCalls)
     {
-        $trlCalls = Kwf_Trl_Parser_JsParser::parseContent($content);
+        $trlCalls = Kwf_TrlJsParser_JsParser::parseContent($content);
         foreach ($trlCalls as $key => $trlCall) {
             //$trlCall['error']
             $this->assertEquals($trlCall['before'], $expectedTrlCalls[$key]['before']);

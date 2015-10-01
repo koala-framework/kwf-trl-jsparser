@@ -1,5 +1,5 @@
 <?php
-class Kwf_Trl_Parser_JsParser
+class Kwf_TrlJsParser_JsParser
 {
     protected $_results;
     public function __construct($content)
@@ -19,7 +19,7 @@ class Kwf_Trl_Parser_JsParser
 
     public static function parseContent($content)
     {
-        $parser = new Kwf_Trl_Parser_JsParser($content);
+        $parser = new Kwf_TrlJsParser_JsParser($content);
         return $parser->getTrlCalls();
     }
 
