@@ -7,6 +7,7 @@ class JsParserTest extends PHPUnit_Framework_TestCase
     public function testParseData($content, $expectedTrlCalls)
     {
         $trlCalls = Kwf_TrlJsParser_JsParser::parseContent($content);
+        $this->assertEquals(count($trlCalls), count($expectedTrlCalls));
         foreach ($trlCalls as $key => $trlCall) {
             //$trlCall['error']
             $this->assertEquals($trlCall['before'], $expectedTrlCalls[$key]['before']);
@@ -59,9 +60,12 @@ class JsParserTest extends PHPUnit_Framework_TestCase
             //TRLCP
             array("trlcp('context', 'undefined word', 'undefined words', 10)", array(
                 array('before'=>"trlcp('context', 'undefined word', 'undefined words', 10)", 'text'=>'undefined word', 'source'=>'web', 'type'=>'trlcp', 'context'=>'context', 'plural'=>'undefined words')
-            ))
+            )),
             //TODO " instead of '
             //TODO same with trlKwf
+            array("t.trlKwf('foo')", array(
+                array('before'=> "t.trlKwf('foo')", 'text'=>'foo', 'source'=>'kwf', 'type'=>'trl')
+            )),
         );
     }
 }

@@ -11,7 +11,11 @@ var translations = [];
 var recursiveCheckForTrl = function(node, translations, contentLines) {
     var key, child, calledFunction;
     if (node.type == 'CallExpression') {
-        calledFunction = node.callee.name;
+        if (node.callee.name) {
+            calledFunction = node.callee.name;
+        } else if (node.callee.type == 'MemberExpression') {
+            calledFunction = node.callee.property.name;
+        }
 
         // Get original source code via start and end
         var lines = [];
@@ -46,7 +50,7 @@ var recursiveCheckForTrl = function(node, translations, contentLines) {
             } else {
                 translation.type = 'trl';
                 translation.text = node.arguments[0].value;
-                translation.source = node.callee.name.indexOf('Kwf') > -1 ? 'kwf' : 'web';
+                translation.source = calledFunction.indexOf('Kwf') > -1 ? 'kwf' : 'web';
             }
         } else if (calledFunction == 'trlpKwf' || calledFunction == 'trlp') {
             if (node.arguments.length != 3) { // singular, plural, variables
@@ -57,7 +61,7 @@ var recursiveCheckForTrl = function(node, translations, contentLines) {
                 translation.type = 'trlp';
                 translation.text = node.arguments[0].value;
                 translation.plural = node.arguments[1].value;
-                translation.source = node.callee.name.indexOf('Kwf') > -1 ? 'kwf' : 'web';
+                translation.source = calledFunction.indexOf('Kwf') > -1 ? 'kwf' : 'web';
             }
         } else if (calledFunction == 'trlcKwf' || calledFunction == 'trlc') {
             if (node.arguments.length != 2 && arguments.length != 3) { // context, singular[, variables]
@@ -68,7 +72,7 @@ var recursiveCheckForTrl = function(node, translations, contentLines) {
                 translation.type = 'trlc';
                 translation.context = node.arguments[0].value;
                 translation.text = node.arguments[1].value;
-                translation.source = node.callee.name.indexOf('Kwf') > -1 ? 'kwf' : 'web';
+                translation.source = calledFunction.indexOf('Kwf') > -1 ? 'kwf' : 'web';
             }
         } else if (calledFunction == 'trlcpKwf' || calledFunction == 'trlcp') {
             if (node.arguments.length != 4) { // context, singular, plural, variables
@@ -83,7 +87,7 @@ var recursiveCheckForTrl = function(node, translations, contentLines) {
                 translation.context = node.arguments[0].value;
                 translation.text = node.arguments[1].value;
                 translation.plural = node.arguments[2].value;
-                translation.source = node.callee.name.indexOf('Kwf') > -1 ? 'kwf' : 'web';
+                translation.source = calledFunction.indexOf('Kwf') > -1 ? 'kwf' : 'web';
             }
         }
         if (translation.type) {
