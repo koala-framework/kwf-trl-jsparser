@@ -11,7 +11,8 @@ var translations = [];
 var recursiveCheckForTrl = function(node, translations, contentLines) {
     var key, child, calledFunction;
     if (node.type == 'CallExpression') {
-        if (node.callee.name) {
+        calledFunction = '';
+        if (node.callee.type == 'Identifier') {
             calledFunction = node.callee.name;
         } else if (node.callee.type == 'MemberExpression') {
             calledFunction = node.callee.property.name;
