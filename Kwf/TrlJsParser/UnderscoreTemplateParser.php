@@ -9,7 +9,7 @@ class Kwf_TrlJsParser_UnderscoreTemplateParser
             'interpolate' => "<%=([\s\S]+?)%>",
             'evaluate' => "<%([\s\S]+?)%>"
         );
-        $matcher = '/'.implode('|', $templateSettings).'$/';
+        $matcher = '/'.implode('|', $templateSettings).'/';
         preg_match_all($matcher, $content, $matches, PREG_PATTERN_ORDER);
 
         $jsContent = "__p+='";
