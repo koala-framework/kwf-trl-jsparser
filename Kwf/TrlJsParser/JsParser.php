@@ -8,7 +8,11 @@ class Kwf_TrlJsParser_JsParser
         if (defined('VENDOR_PATH')) {
             $vendorPath = VENDOR_PATH;
         }
-        $process = new Symfony\Component\Process\Process(getcwd()."/$vendorPath/bin/node ".__DIR__.'/JsParser.js --jsxMode=' . $jsxMode);
+
+        $cmd = getcwd()."/$vendorPath/bin/node ".__DIR__.'/JsParser.js';
+        if ($jsxMode) $cmd .= ' --jsxMode=true';
+
+        $process = new Symfony\Component\Process\Process($cmd);
         $process = $process->setInput($content);
         $process->run();
         if (!$process->isSuccessful()) {
