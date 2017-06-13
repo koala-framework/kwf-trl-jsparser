@@ -10,7 +10,8 @@
     },
     "extra": {
         "require-npm": {
-            "esprima": "^4.0.0"
+            "esprima": "^4.0.0",
+            "minimist": "^1.2.0"
         }
     },
     "autoload": {
