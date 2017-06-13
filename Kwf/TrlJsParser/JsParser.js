@@ -1,7 +1,8 @@
 var esprima = require('esprima');
 var fs = require('fs');
-var pathModule = require('path');
 process.stdin.setEncoding('utf8');
+
+var argv = require('minimist')(process.argv.slice(2));
 
 var ERROR_WRONG_NR_OF_ARGUMENTS = 'wrongNrOfArguments';
 var ERROR_WRONG_ARGUMENT_TYPE = 'wrongArgumentType';
@@ -106,7 +107,13 @@ var recursiveCheckForTrl = function(node, translations, contentLines) {
 }
 
 var parseContent = function(content, translations, contentLines) {
-    recursiveCheckForTrl(esprima.parse(content, {loc: true}), translations, contentLines);
+    var config = { loc: true };
+    if (argv.jsxMode !== undefined && JSON.parse(argv.jsxMode) === true) {
+        config.jsx = true;
+        config.sourceType = 'module';
+    }
+
+    recursiveCheckForTrl(esprima.parse(content, config), translations, contentLines);
 };
 
 var content = '';
