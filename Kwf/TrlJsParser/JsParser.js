@@ -18,6 +18,7 @@ var recursiveCheckForTrl = function(node, translations, contentLines) {
         } else if (node.callee.type == 'MemberExpression') {
             calledFunction = node.callee.property.name;
         }
+        calledFunction = calledFunction.replace('__', '');
 
         // Get original source code via start and end
         var lines = [];
